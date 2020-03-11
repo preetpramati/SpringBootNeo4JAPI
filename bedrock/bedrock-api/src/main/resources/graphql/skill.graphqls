@@ -1,0 +1,8 @@
+type Skill{
+	id: ID!,
+	skillName: String,
+	skillBucket: String,
+	desc: String,
+	provider: String,
+	type: String
+}

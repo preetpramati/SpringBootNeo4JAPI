@@ -1,0 +1,12 @@
+type Project{
+	id: ID!,
+	name: String,
+	desc: String,
+	teamSize: String,
+	skillBucket: String,
+	location: String,
+	skill: Skill,
+	asset: Assets,
+	projectMemberRelation: ProjectMemberRelation
+}
+

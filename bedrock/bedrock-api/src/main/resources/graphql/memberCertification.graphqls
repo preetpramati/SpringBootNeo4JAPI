@@ -1,0 +1,4 @@
+type MemberCertificationRelation{
+	date: String,
+	certification: Certifications
+}

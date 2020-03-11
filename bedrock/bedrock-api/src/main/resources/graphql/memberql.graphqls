@@ -1,0 +1,36 @@
+type Member {
+	id: ID!,
+	empId: Long,
+	name: String,
+	location: String,
+	experience: String,
+	title: String,
+	member: Member,
+	contribution: Contributions,
+	skill: Skill,
+	asset: Assets,
+	memberProjectRelation: MemberProjectRelation,
+	memberCertificationRelation: MemberCertificationRelation,
+	
+}
+
+
+
+
+type Query {
+	members(count: Int):[Member]
+	member(id: Long):Member
+	memberByName(name: String):[Member]
+	searchMember(name: String, skillBucket: String, empId: Long, pName: String): [Member]
+	searchProject(name: String, skillBucket: String, location: String): [Project]
+    allMembersWithContribution(skill: String): [Member]
+	allMembersWithSkill(skill: String): [Member]
+	allMembersWithCertfication(skill: String): [Member]
+	allMemberWithCreatedAsset(skill: String): [Member]
+	allMemberWithBillingInProject(skill: String): [Member]
+	allMemberReportsToManager(skill: String): [Member]
+	allCertifiedInSkill(skillBucket: String): [Certifications]
+	allContributionsWithSkill(technology: String): [Contributions]
+	allProjectWithCreatedAsset(skillBucket: String): [Project]
+    allProjectWithNeedOfSkill(skillBucket: String): [Project]
+}

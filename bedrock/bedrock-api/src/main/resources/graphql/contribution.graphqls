@@ -1,0 +1,10 @@
+type Contributions{
+	id: ID!,
+	empId: String,
+	url: String,
+	technology: String,
+	topic: String,
+	desc: String,
+	skill: Skill
+}
+

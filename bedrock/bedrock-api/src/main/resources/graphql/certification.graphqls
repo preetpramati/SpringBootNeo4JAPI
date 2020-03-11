@@ -1,0 +1,9 @@
+type Certifications{
+	id: ID!,
+	name: String,
+	desc: String,
+	skillBucket: String,
+	skill: String,
+	provider: String,
+	certUrl: String
+}

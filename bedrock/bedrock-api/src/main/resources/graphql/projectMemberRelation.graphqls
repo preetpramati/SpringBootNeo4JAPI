@@ -1,0 +1,7 @@
+type ProjectMemberRelation{
+	startDate: String,
+	endDate: String,
+	project: Project,
+	member: Member
+	
+}

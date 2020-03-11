@@ -1,0 +1,8 @@
+type Assets{
+	id: ID!,
+	url: String,
+	technology: String,
+	topic: String,
+	desc: String,
+	skillBucket: String
+}
