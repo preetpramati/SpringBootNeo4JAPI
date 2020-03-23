@@ -1,0 +1,99 @@
+Contributions Node
+//////////////////
+CREATE (contribution:Contributions { empId: '1234', topic: 'spring', technology: 'java', url: 'www.abcd.com', desc: 'qwerty' })
+//////////////////
+Assets Node
+/////////////////
+CREATE (assets:Assets { topic: 'spring', technology: 'java', skillBucket: 'java', url: 'www.abcd.com', desc: 'qwerty' })
+////////////////
+Certifications Node
+//////////////////
+CREATE (certifications:Certifications { name: 'Andy', skillBucket: 'java', provider: 'sunSystem', skill: 'spring', desc: 'qwerty' })
+/////////////////
+Project Node
+///////////////////
+CREATE (project:Project { name: 'bedrock', location: 'hyderabad', skillBucket: 'java', teamSize: 'twelve', desc: 'qwerty' })
+//////////////////
+Skill Node
+//////////////////
+CREATE (skill:Skill { skillName: 'java', skillBucket: 'spring', type: 'active', provider: 'sunSystem', desc: 'qwerty' })
+///////////////////////////
+Member Node
+//////////////////////
+CREATE (member:Member { college: 'abcd', resumeUrl: 'sdfg', field: 'developer', skillBucket: 'java', year: '2020', blockedFor: 'none', degree: 'btech', name: 'Andy', location: 'hyderabad', experience: '4years', title: 'Developer', status: 'active', empId:12345 })
+
+CREATE (member:Member { college: 'abcd', resumeUrl: 'sdfg', field: 'developer', skillBucket: 'java', year: '2020', blockedFor: 'none', degree: 'btech', name: 'john', location: 'hyderabad', experience: '4years', title:'Developer', status: 'active' })
+
+
+Relation Query
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+CREATED_ASSET
+////////////////
+MATCH (a:Member),(b:Assets)
+WHERE a.name = 'Andy' AND b.topic = 'spring'
+CREATE (a)-[r:CREATED_ASSET]->(b)
+RETURN type(r)
+////////////////////////////////////////////
+HAS_ASSET
+///////////////////
+MATCH (a:Project),(b:Assets)
+WHERE a.name = 'bedrock' AND b.topic = 'spring'
+CREATE (a)-[r:HAS_ASSET]->(b)
+RETURN type(r)
+/////////////////////
+HAS_CONTRIBUTION
+///////////////////////
+MATCH (a:Member),(b:Contributions)
+WHERE a.name = 'Andy' AND b.topic = 'spring'
+CREATE (a)-[r:HAS_CONTRIBUTION]->(b)
+RETURN type(r)
+////////////////////
+IS_BILLED_FOR
+///////////////
+MATCH (a:Member),(b:Project)
+WHERE a.name = 'Andy' AND b.name = 'bedrock'
+CREATE (a)-[r:IS_BILLED_FOR]->(b)
+RETURN type(r)
+/////////////////////
+IS_CERTIFIED_IN
+////////////////////
+MATCH (a:Member),(b:Certifications)
+WHERE a.name = 'Andy' AND b.skillBucket = 'java'
+CREATE (a)-[r:IS_CERTIFIED_IN]->(b)
+RETURN type(r)
+/////////////////////
+KNOWS_SKILLS
+////////////////////
+MATCH (a:Member),(b:Skill)
+WHERE a.name = 'Andy' AND b.skillBucket = 'spring'
+CREATE (a)-[r:KNOWS_SKILLS]->(b)
+RETURN type(r)
+////////////////////////
+NEEDS
+////////////////////
+MATCH (a:Project),(b:Skill)
+WHERE a.name = 'bedrock' AND b.skillBucket = 'spring'
+CREATE (a)-[r:NEEDS]->(b)
+RETURN type(r)
+/////////////////////////
+PART_OF
+/////////////////////
+MATCH (a:Contributions),(b:Skill)
+WHERE a.topic = 'spring' AND b.skillBucket = 'spring'
+CREATE (a)-[r:PART_OF]->(b)
+RETURN type(r)
+///////////////////////////////
+PART_OF
+////////////////////
+MATCH (a:Certifications),(b:Skill)
+WHERE a.name = 'Andy' AND b.skillBucket = 'spring'
+CREATE (a)-[r:PART_OF]->(b)
+RETURN type(r)
+//////////////////////
+REPORTS_TO
+//////////////////////
+MATCH (a:Member),(b:Member)
+WHERE a.name = 'Andy' AND b.name = 'jhon'
+CREATE (a)-[r:REPORTS_TO]->(b)
+RETURN type(r)
+/////////////////////////
